@@ -5,7 +5,7 @@ var sass = require('gulp-sass');
 var browserSync = require('browser-sync');
 var reload = browserSync.reload;
 
-gulp.task('default', ['sass', 'sass:watch', 'html', 'browser-sync']);
+gulp.task('default', ['sass', 'sass:watch', 'html', 'html:watch', 'browser-sync']);
 
 gulp.task('sass', function () {
   return gulp.src('./src/styles/**/*.scss')
@@ -22,6 +22,10 @@ gulp.task('html', function() {
   gulp.src('./*.html')
     .pipe(gulp.dest('dist/'))
     .pipe(reload({stream:true}));
+});
+
+gulp.task('html:watch', function() {
+  gulp.watch('./*.html', ['html']);
 });
 
 gulp.task('browser-sync', function() {
