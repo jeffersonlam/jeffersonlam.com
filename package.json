@@ -16,7 +16,10 @@
     "url": "https://github.com/jeffersonlam/jeffersonlam.com/issues"
   },
   "homepage": "https://github.com/jeffersonlam/jeffersonlam.com#readme",
-  "dependencies": {
-    "gulp": "^3.9.1"
+  "dependencies": {},
+  "devDependencies": {
+    "browser-sync": "^2.24.5",
+    "gulp": "^3.9.1",
+    "gulp-sass": "^4.0.1"
   }
 }
