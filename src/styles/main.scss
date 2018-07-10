@@ -1,8 +1,10 @@
-// Packages
+// Utilities
 @import '../../node_modules/reset-css/reset';
+@import 'utilities/icomoon';
 
 @import 'theme/default';
 @import 'base/base';
 @import 'layout/nav';
 @import 'layout/wrapper';
 @import 'layout/footer';
+@import 'module/icons';
