@@ -2,8 +2,10 @@
 @import '../../node_modules/reset-css/reset';
 @import 'packages/icomoon';
 
+@import 'utilities/functions';
 
 @import 'theme/default';
+
 @import 'base/base';
 @import 'layout/nav';
 @import 'layout/wrapper';
