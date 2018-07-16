@@ -20,29 +20,28 @@
 <body>
 
 <pre>
-  <h1>Jefferson Lam</h1>
-  <h2>Front End Developer</h2>
-</nav>
+Jefferson Lam
+Front End Developer
+<a href="/maps">Daytripper</a>
+<a href="http://streetspin.com/newgame">Streetspin</a>
 
-<section>
-  <div class="wrapper">
-    <ul>
-      <li><a href="/maps">Daytripper</a></li>
-      <li><a href="http://streetspin.com/newgame">Streetspin</a></li>
-    </ul> 
-  </div>
-</section>
+---
 
-<footer>
-  <div class="wrapper">
-    <ul>
-      <li><a href="https://github.com/jeffersonlam">Github</a></li>
-      <li><a href="https://codepen.io/jeffersonlam/">Codepen</a></li>
-      <li><a href="https://www.linkedin.com/in/jeffersonlam/">LinkedIn</a></li>
-      <li>jeffersonwlam@gmail.com</li>
-    </ul>
-  </div>  
-</footer>
+<a href="https://github.com/jeffersonlam">Github</a>
+<a href="https://codepen.io/jeffersonlam/">Codepen</a>
+<a href="https://www.linkedin.com/in/jeffersonlam/">LinkedIn</a>
+<a id="email"></a>
+</pre>
 
+<script>
+createEmailAnchor(['jefferson','w','lam','@','gmail','.','com'], 'email');
+
+function createEmailAnchor(array, anchorId){
+  var email = array.join('');
+  var elAnchor = document.getElementById(anchorId);
+  elAnchor.href = 'mailto:' + email + '?subject=Reaching Out';
+  elAnchor.innerHTML = email;
+}
+</script>
 </body>
 </html>
