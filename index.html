@@ -24,17 +24,14 @@
       text-decoration: underline;
     }
     .guy {
-      width: 6.2em;
-      height: 1em;
+      width: 6em;
       display: inline-block;
     }
     .sparkles {
-      width: 4.7em;
+      width: 6em;
       margin-right: 5px;
-      height: 1em;
-      display: inline-flex;
-      justify-content: space-between;
-      align-items: center;
+      display: inline-block;
+      text-align: center;
     }
 
   </style>
@@ -69,8 +66,8 @@ Projects
   <a id="email"></a>
 
 ---
-                    <span class="laptop-top">  ____</span>
-<div class="animation"><span class="guy">( ⊃・ω・)っ</span><span class="sparkles">-.･ﾟ*｡ﾟ☆</span><span class="laptop">__/___/</span></div>
+                     <span class="laptop-top">  ____</span>
+<div class="animation"><span class="guy">( ⊃・ω・)っ</span><span class="sparkles">-.･ﾟ*｡-･ﾟ☆</span><span class="laptop">__/___/</span></div>
 </pre>
 
 <script>
@@ -78,15 +75,16 @@ const animationEl = document.querySelector('.animation');
 const sparklesEl = document.querySelector('.sparkles');
 const guyEl = document.querySelector('.guy');
 let playing = false;
-let speed = 300;
-const increment = .9;
-const limitA = 100;
-const limitB = 30;
+let speed = 350;
+const increment = .95;
+const limitA = 120;
+const limitB = 50;
 const limitC = 15;
+let bugs = false;
 let speedUp = false;
 let sparklesAnimation = null;
 let guyAnimation = null;
-const sparkles = '-.･ﾟ*｡･☆';
+const sparkles = '-.･ﾟ*｡-･ﾟ☆';
 const projectiles = ['☆','☃', '⚾︎', '✏︎', '✪', '✿', '-', '.', '･', 'ﾟ', '*', '｡', 'ﾟ', '=', '≡', '✂'];
 const guyFramesA = ['( ⊃・ω・)੭', '( ੭・ω・)⊃'];
 const guyFramesB = ['( ⊃ •̀ω•́)੭', '( ੭ •̀ω•́)⊃'];
@@ -102,7 +100,6 @@ const sparklesArray = [...sparkles].map(sparkle => {
 animationEl.addEventListener('click', () => {
   if (!playing) {
     initializeAnimation();
-    animateGuy();
     sparklesAnimation = setInterval(animateSparkles, speed);
     guyAnimation = setInterval(animateGuy, speed);
     playing = true;
@@ -126,6 +123,11 @@ function nextColor() {
 function animateSparkles() {
   counter++;
   const sparkle = sparklesArray.pop();
+  if (speed < limitB && !bugs) {
+    bugs = true;
+    projectiles.push('🐛', '👾');
+  }
+
   if (counter >= sparkles.length) {
     counter = 0;
     const projectile = projectiles[getRandomInt(projectiles.length)];
@@ -166,12 +168,20 @@ function animateGuy() {
 function flipTable() {
   clearInterval(sparklesAnimation);
   clearInterval(guyAnimation);
-  guyEl.textContent = '(ノ O‿O)ノ';
-  sparklesEl.textContent = '';
-  const laptop = document.querySelector('.laptop');
-  const laptopTop = document.querySelector('.laptop-top');
-  laptopTop.textContent = '   ______';
-  laptop.textContent = '彡彡/___/';
+  setInterval(() => {
+    const html = [...sparklesEl.textContent];
+    html.pop();
+    html.unshift(' ');
+    sparklesEl.textContent = html.join('');
+  }, speed);
+  setTimeout(() => {
+    guyEl.textContent = '( ノO‿O)ノ';
+    sparklesEl.textContent = '';
+    const laptop = document.querySelector('.laptop');
+    const laptopTop = document.querySelector('.laptop-top');
+    laptopTop.textContent = '    ______';
+    laptop.textContent = '彡彡/___/';
+  }, 1500);
 }
 
 function getRandomInt(max) {
