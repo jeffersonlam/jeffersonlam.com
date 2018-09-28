@@ -6,6 +6,36 @@
   <meta name="description" content="">
   <meta name="author" content="Jefferson Lam">
   <link rel="stylesheet" href="./css/main.css">
+  <style>
+    body {
+      font-size: 1.5em;
+      font-family: 'Courier New', Courier, monospace;
+    }
+    a {
+      text-decoration: none;
+      color: #AA00FF;
+      font-style: italic;
+    }
+    a:visited {
+      color: #AA00FF;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    .guy {
+      width: 6.2em;
+      height: 1em;
+      display: inline-block;
+    }
+    .sparkles {
+      width: 4.7em;
+      margin-right: 5px;
+      height: 1em;
+      display: inline-flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
   </style>
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-46392706-1"></script>
@@ -13,7 +43,6 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-
     gtag('config', 'UA-46392706-1');
   </script>
 </head>
@@ -22,20 +51,132 @@
 <pre>
 Jefferson Lam
 Front End Developer
-<a href="http://jefferson.im/csvtojson/">CSV to JSON</a>
-<a href="https://whole30.jefferson.im/">Whole30 Compliance Checker</a>
-<a href="http://streetspin.com/newgame">Streetspin</a>
-<a href="/maps">Daytripper</a>
+
+
+Projects
+
+  <a href="http://jefferson.im/csvtojson/">CSV to JSON</a>
+  <a href="https://whole30.jefferson.im/">Whole30 Compliance Checker</a>
+  <a href="http://streetspin.com/newgame">Streetspin</a>
+  <a href="/maps">Daytripper</a>
 
 ---
 
-<a href="https://github.com/jeffersonlam">Github</a>
-<a href="https://codepen.io/jeffersonlam/">Codepen</a>
-<a href="https://www.linkedin.com/in/jeffersonlam/">LinkedIn</a>
-<a id="email"></a>
+  <a href="https://github.com/jeffersonlam">Github</a>
+  <a href="https://codepen.io/jeffersonlam/">Codepen</a>
+  <a href="https://www.linkedin.com/in/jeffersonlam/">LinkedIn</a>
+  <a id="email"></a>
+
+---
+                    <span class="laptop-top">  ____</span>
+<div class="animation"><span class="guy">( ⊃・ω・)っ</span><span class="sparkles">-.･ﾟ*｡ﾟ☆</span><span class="laptop">__/___/</span></div>
 </pre>
 
 <script>
+const animationEl = document.querySelector('.animation');
+const sparklesEl = document.querySelector('.sparkles');
+const guyEl = document.querySelector('.guy');
+let playing = false;
+let speed = 300;
+const increment = .9;
+const limitA = 100;
+const limitB = 30;
+const limitC = 15;
+let speedUp = false;
+let sparklesAnimation = null;
+let guyAnimation = null;
+const sparkles = '-.･ﾟ*｡･☆';
+const projectiles = ['☆','☃', '⚾︎', '✏︎', '✪', '✿', '-', '.', '･', 'ﾟ', '*', '｡', 'ﾟ', '=', '≡', '✂'];
+const guyFramesA = ['( ⊃・ω・)੭', '( ੭・ω・)⊃'];
+const guyFramesB = ['( ⊃ •̀ω•́)੭', '( ੭ •̀ω•́)⊃'];
+const guyFramesC = ['( ⊃ ○Д○)੭', '( ੭ ○Д○)⊃'];
+const colors = ['red', 'orange', 'blue', 'violet'];
+let counter = sparkles.length;
+let guyCounter = 0;
+let colorCounter = 0;
+const sparklesArray = [...sparkles].map(sparkle => {
+  return `<span style="color: ${nextColor()}">${sparkle}</span>`;
+});
+
+animationEl.addEventListener('click', () => {
+  if (!playing) {
+    initializeAnimation();
+    animateGuy();
+    sparklesAnimation = setInterval(animateSparkles, speed);
+    guyAnimation = setInterval(animateGuy, speed);
+    playing = true;
+  } else if (speed > limitC) {
+    speedUp = true;
+  }
+});
+
+function initializeAnimation() {
+  sparklesEl.innerHTML = sparklesArray.join('');
+}
+
+function nextColor() {
+  const color = colors[colorCounter++];
+  if (colorCounter >= colors.length) {
+    colorCounter = 0;
+  }
+  return color;
+}
+
+function animateSparkles() {
+  counter++;
+  const sparkle = sparklesArray.pop();
+  if (counter >= sparkles.length) {
+    counter = 0;
+    const projectile = projectiles[getRandomInt(projectiles.length)];
+    const html = `<span style="color: ${nextColor()}">${projectile}</span>`
+    sparklesArray.unshift(html);
+  } else {
+    sparklesArray.unshift(sparkle);
+  }
+  sparklesEl.innerHTML = sparklesArray.join('');
+
+  if (speedUp) {
+    speedUp = false;
+    speed *= increment;
+    clearInterval(sparklesAnimation);
+    sparklesAnimation = setInterval(animateSparkles, speed);
+  }
+}
+
+function animateGuy() {
+  if (speed > limitA) {
+    guyEl.textContent = guyFramesA[guyCounter++];
+  } else if (speed < limitA && speed > limitB) {
+    guyEl.textContent = guyFramesB[guyCounter++];
+  } else if (speed < limitB && speed > limitC) {
+    guyEl.textContent = guyFramesC[guyCounter++];
+  } else if (speed < limitC) {
+    flipTable();
+  }
+
+  if (guyCounter >= guyFramesA.length) guyCounter = 0;
+
+  if (speedUp) {
+    clearInterval(guyAnimation);
+    guyAnimation = setInterval(animateGuy, speed);
+  }
+}
+
+function flipTable() {
+  clearInterval(sparklesAnimation);
+  clearInterval(guyAnimation);
+  guyEl.textContent = '(ノ O‿O)ノ';
+  sparklesEl.textContent = '';
+  const laptop = document.querySelector('.laptop');
+  const laptopTop = document.querySelector('.laptop-top');
+  laptopTop.textContent = '   ______';
+  laptop.textContent = '彡彡/___/';
+}
+
+function getRandomInt(max) {
+  return Math.floor(Math.random() * Math.floor(max));
+}
+
 createEmailAnchor(['jefferson','w','lam','@','gmail','.','com'], 'email');
 
 function createEmailAnchor(array, anchorId) {
@@ -44,6 +185,7 @@ function createEmailAnchor(array, anchorId) {
   elAnchor.href = 'mailto:' + email + '?subject=Reaching Out';
   elAnchor.innerHTML = email;
 }
+
 </script>
 </body>
 </html>
