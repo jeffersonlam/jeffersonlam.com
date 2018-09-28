@@ -38,7 +38,7 @@ Front End Developer
 <script>
 createEmailAnchor(['jefferson','w','lam','@','gmail','.','com'], 'email');
 
-function createEmailAnchor(array, anchorId){
+function createEmailAnchor(array, anchorId) {
   var email = array.join('');
   var elAnchor = document.getElementById(anchorId);
   elAnchor.href = 'mailto:' + email + '?subject=Reaching Out';
