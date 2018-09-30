@@ -75,11 +75,11 @@ const animationEl = document.querySelector('.animation');
 const sparklesEl = document.querySelector('.sparkles');
 const guyEl = document.querySelector('.guy');
 let playing = false;
-let speed = 350;
+let speed = 300;
 const increment = .95;
-const limitA = 120;
-const limitB = 50;
-const limitC = 15;
+const limitA = 100;
+const limitB = 40;
+const limitC = 20;
 let bugs = false;
 let speedUp = false;
 let sparklesAnimation = null;
@@ -89,13 +89,28 @@ const projectiles = ['☆','☃', '⚾︎', '✏︎', '✪', '✿', '-', '.', '�
 const guyFramesA = ['( ⊃・ω・)੭', '( ੭・ω・)⊃'];
 const guyFramesB = ['( ⊃ •̀ω•́)੭', '( ੭ •̀ω•́)⊃'];
 const guyFramesC = ['( ⊃ ○Д○)੭', '( ੭ ○Д○)⊃'];
-const colors = ['red', 'orange', 'blue', 'violet'];
+const colors = [
+  '#d50000',
+  '#C51162',
+  '#AA00FF',
+  '#6200EA',
+  '#304FFE',
+  '#2962FF',
+  '#0091EA',
+  '#00B8D4',
+  '#00BFA5',
+  '#00C853',
+  '#64DD17',
+  '#AEEA00',
+  '#FFD600',
+  '#FFAB00',
+  '#FF6D00',
+  '#DD2C00',
+];
 let counter = sparkles.length;
 let guyCounter = 0;
 let colorCounter = 0;
-const sparklesArray = [...sparkles].map(sparkle => {
-  return `<span style="color: ${nextColor()}">${sparkle}</span>`;
-});
+let sparklesSpans = [];
 
 animationEl.addEventListener('click', () => {
   if (!playing) {
@@ -109,34 +124,50 @@ animationEl.addEventListener('click', () => {
 });
 
 function initializeAnimation() {
-  sparklesEl.innerHTML = sparklesArray.join('');
+  sparklesSpans = [...sparkles].map(sparkle => {
+    const span = document.createElement('span');
+    span.textContent = sparkle;
+    span.style.color = nextColor();
+    return span;
+  });
+  sparklesEl.innerHTML = '';
+  sparklesSpans.forEach(sparkle => {
+    sparklesEl.appendChild(sparkle);
+  });
 }
 
 function nextColor() {
-  const color = colors[colorCounter++];
-  if (colorCounter >= colors.length) {
-    colorCounter = 0;
+  if (colorCounter < 0) {
+    colorCounter = colors.length - 1;
   }
+  const color = colors[colorCounter--];
   return color;
+}
+
+function randomProjectile() {
+  return projectiles[getRandomInt(projectiles.length)];
 }
 
 function animateSparkles() {
   counter++;
-  const sparkle = sparklesArray.pop();
-  if (speed < limitB && !bugs) {
-    bugs = true;
-    projectiles.push('🐛', '👾');
-  }
+  const sparkle = sparklesEl.lastChild;
+  sparklesEl.removeChild(sparkle);
 
   if (counter >= sparkles.length) {
     counter = 0;
-    const projectile = projectiles[getRandomInt(projectiles.length)];
-    const html = `<span style="color: ${nextColor()}">${projectile}</span>`
-    sparklesArray.unshift(html);
+    const span = document.createElement('span');
+    span.textContent = randomProjectile();
+    span.style.color = nextColor();
+    sparklesEl.insertBefore(span, sparklesEl.firstChild);
   } else {
-    sparklesArray.unshift(sparkle);
+    sparkle.style.color = nextColor();
+    sparklesEl.insertBefore(sparkle, sparklesEl.firstChild);
   }
-  sparklesEl.innerHTML = sparklesArray.join('');
+
+  if (!bugs && speed < limitB) {
+    bugs = true;
+    projectiles.push('🐛', '👾');
+  }
 
   if (speedUp) {
     speedUp = false;
@@ -169,10 +200,10 @@ function flipTable() {
   clearInterval(sparklesAnimation);
   clearInterval(guyAnimation);
   setInterval(() => {
-    const html = [...sparklesEl.textContent];
-    html.pop();
-    html.unshift(' ');
-    sparklesEl.textContent = html.join('');
+    const remainingSparkles = [...sparklesEl.textContent];
+    remainingSparkles.pop();
+    remainingSparkles.unshift(' ');
+    sparklesEl.textContent = remainingSparkles.join('');
   }, speed);
   setTimeout(() => {
     guyEl.textContent = '( ノO‿O)ノ';
@@ -187,6 +218,8 @@ function flipTable() {
 function getRandomInt(max) {
   return Math.floor(Math.random() * Math.floor(max));
 }
+
+// -----
 
 createEmailAnchor(['jefferson','w','lam','@','gmail','.','com'], 'email');
 
