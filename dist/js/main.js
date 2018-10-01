@@ -69,7 +69,7 @@ class Animation {
       state.flyingProjectiles--;
     }
 
-    if (state.flyingProjectiles < 3 && this.getRandomInt(5) == 0) {
+    if (state.flyingProjectiles < props.maxProjectiles && (this.getRandomInt(100) + 1) <= (props.projectilesChance * 100)) {
       state.flyingProjectiles++;
       const span = document.createElement('span');
       span.textContent = this.randomProjectile();
@@ -184,13 +184,15 @@ const options = {
   sparkles: '-.･ﾟ*｡-･ﾟ☆',
   projectiles: ['☆','☃', '⚾︎', '✏︎', '✪', '✿', '✂', '☕'],
   bugs: ['🐛', '🐛', '🐛', '🐛', '👾', '👻', '💀', '💩'],
+  maxProjectiles: 3,
+  projectilesChance: .20,
   kaomoji: [
     ['( ⊃・ω・)੭', '( ੭・ω・)⊃'],
     ['( ⊃ •̀ω•́)੭', '( ੭ •̀ω•́)⊃'],
     ['( ⊃ ○Д○)੭', '( ੭ ○Д○)⊃'],
   ],
-  speedPhases: [100, 40, 20],
   speed: 300,
+  speedPhases: [100, 40, 20],
   increment: .92,
   colors: [
     '#d50000',
