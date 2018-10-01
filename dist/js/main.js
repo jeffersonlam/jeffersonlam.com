@@ -1,142 +1,217 @@
-const animationEl = document.querySelector('.animation');
-const sparklesEl = document.querySelector('.sparkles');
-const guyEl = document.querySelector('.guy');
-let playing = false;
-let speed = 300;
-const increment = .95;
-const limitA = 100;
-const limitB = 40;
-const limitC = 20;
-let bugs = false;
-let speedUp = false;
-let sparklesAnimation = null;
-let guyAnimation = null;
-const sparkles = '-.･ﾟ*｡-･ﾟ☆';
-const projectiles = ['☆','☃', '⚾︎', '✏︎', '✪', '✿', '-', '.', '･', 'ﾟ', '*', '｡', 'ﾟ', '=', '≡', '✂'];
-const guyFramesA = ['( ⊃・ω・)੭', '( ੭・ω・)⊃'];
-const guyFramesB = ['( ⊃ •̀ω•́)੭', '( ੭ •̀ω•́)⊃'];
-const guyFramesC = ['( ⊃ ○Д○)੭', '( ੭ ○Д○)⊃'];
-const colors = [
-  '#d50000',
-  '#C51162',
-  '#AA00FF',
-  '#6200EA',
-  '#304FFE',
-  '#2962FF',
-  '#0091EA',
-  '#00B8D4',
-  '#00BFA5',
-  '#00C853',
-  '#64DD17',
-  '#AEEA00',
-  '#FFD600',
-  '#FFAB00',
-  '#FF6D00',
-  '#DD2C00',
-];
-let counter = sparkles.length;
-let guyCounter = 0;
-let colorCounter = 0;
-let sparklesSpans = [];
- animationEl.addEventListener('click', () => {
-  if (!playing) {
-    initializeAnimation();
-    sparklesAnimation = setInterval(animateSparkles, speed);
-    guyAnimation = setInterval(animateGuy, speed);
-    playing = true;
-  } else if (speed > limitC) {
-    speedUp = true;
+class Animation {
+  constructor(options) {
+    this.props = {};
+
+    for (const [key, value] of Object.entries(options)) {
+      this.props[key] = value;
+    }
+
+    this.state = {
+      speed: this.props.speed,
+      phase: 0,
+      addBugs: false,
+      speedUp: false,
+      flyingProjectiles: 1,
+      guyFrame: 0,
+      colorCounter: 0,
+      kaomojiCounter: 0,
+      sparklesAnimation: null,
+      kaomojiAnimation: null,
+      sparklesSpans: [],
+      sparklesQueue: [],
+    }
+
+    this.initializingClick = this.initialize.bind(this);
+    this.props.container.addEventListener('click', this.initializingClick);
   }
-});
- function initializeAnimation() {
-  sparklesSpans = [...sparkles].map(sparkle => {
-    const span = document.createElement('span');
-    span.textContent = sparkle;
-    span.style.color = nextColor();
-    return span;
-  });
-  sparklesEl.innerHTML = '';
-  sparklesSpans.forEach(sparkle => {
-    sparklesEl.appendChild(sparkle);
-  });
-}
- function nextColor() {
-  if (colorCounter < 0) {
-    colorCounter = colors.length - 1;
+
+  initialize() {
+    const { state, props } = this;
+    if (state.playing) {
+      return;
+    } else {
+      state.playing = true;
+    }
+
+    // create spans
+    props.sparklesSpans = [...props.sparkles].map(sparkle => {
+      const span = document.createElement('span');
+      span.textContent = sparkle;
+      span.style.color = this.nextColor();
+      return span;
+    });
+    props.sparklesElement.innerHTML = '';
+    props.sparklesSpans.forEach(sparkle => {
+      props.sparklesElement.appendChild(sparkle);
+    });
+
+    // create animation intervals
+    state.sparklesAnimation = setInterval(this.animateSparkles.bind(this), this.state.speed);
+    state.kaomojiAnimation = setInterval(this.animateKaomoji.bind(this), this.state.speed);
+
+    // create click listener
+    props.container.removeEventListener('click', this.initializingClick);
+    props.container.addEventListener('click', () => {
+      state.speedUp = true;
+    });
   }
-  const color = colors[colorCounter--];
-  return color;
-}
- function randomProjectile() {
-  return projectiles[getRandomInt(projectiles.length)];
-}
- function animateSparkles() {
-  counter++;
-  const sparkle = sparklesEl.lastChild;
-  sparklesEl.removeChild(sparkle);
-   if (counter >= sparkles.length) {
-    counter = 0;
-    const span = document.createElement('span');
-    span.textContent = randomProjectile();
-    span.style.color = nextColor();
-    sparklesEl.insertBefore(span, sparklesEl.firstChild);
-  } else {
-    sparkle.style.color = nextColor();
-    sparklesEl.insertBefore(sparkle, sparklesEl.firstChild);
+
+  animateSparkles() {
+    const { props, state } = this;
+
+    const sparkle = props.sparklesElement.lastChild;
+    props.sparklesElement.removeChild(sparkle);
+    sparkle.style.color = this.nextColor();
+
+    if (props.projectiles.indexOf(sparkle.textContent) == -1) {
+      state.sparklesQueue.push(sparkle);
+    } else {
+      state.flyingProjectiles--;
+    }
+
+    if (state.flyingProjectiles < 3 && this.getRandomInt(5) == 0) {
+      state.flyingProjectiles++;
+      const span = document.createElement('span');
+      span.textContent = this.randomProjectile();
+      span.style.color = this.nextColor();
+      state.sparklesQueue.push(span);
+    }
+
+    const nextSparkle = state.sparklesQueue.shift();
+    if (nextSparkle) {
+      props.sparklesElement.insertBefore(nextSparkle, props.sparklesElement.firstChild);
+    }
+
+    if (!state.addBugs && state.phase == 2) {
+      state.addBugs = true;
+      props.projectiles.push(...props.bugs);
+    }
+
+    if (state.speedUp) {
+      state.speedUp = false;
+      state.speed *= props.increment;
+      clearInterval(state.sparklesAnimation);
+      state.sparklesAnimation = setInterval(this.animateSparkles.bind(this), state.speed);
+    }
   }
-   if (!bugs && speed < limitB) {
-    bugs = true;
-    projectiles.push('🐛', '👾');
+
+  animateKaomoji() {
+    if (this.state.phase == 3) {
+      this.flipTable();
+      return;
+    }
+
+    const { kaomojiElement, kaomoji } = this.props;
+    const { speed, kaomojiCounter, phase } = this.state;
+
+    kaomojiElement.textContent = kaomoji[phase][kaomojiCounter];
+    this.state.kaomojiCounter++;
+
+    if (kaomojiCounter >= kaomoji[0].length - 1) {
+      this.state.kaomojiCounter = 0;
+    }
+
+    if (this.state.speedUp) {
+      clearInterval(this.state.kaomojiAnimation);
+      this.state.kaomojiAnimation = setInterval(this.animateKaomoji.bind(this), speed);
+    }
+
+    this.checkPhase();
   }
-   if (speedUp) {
-    speedUp = false;
-    speed *= increment;
-    clearInterval(sparklesAnimation);
-    sparklesAnimation = setInterval(animateSparkles, speed);
+
+  flipTable() {
+    clearInterval(this.state.sparklesAnimation);
+    clearInterval(this.state.kaomojiAnimation);
+
+    // animate out remaining sparkles
+    setInterval(() => {
+      const remainingSparkles = [...this.props.sparklesElement.textContent];
+      remainingSparkles.pop();
+      remainingSparkles.unshift(' ');
+      this.props.sparklesElement.textContent = remainingSparkles.join('');
+    }, this.state.speed);
+
+    // flip the table
+    setTimeout(() => {
+      this.props.kaomojiElement.textContent = '( ノO‿O)ノ';
+      const laptop = document.querySelector('.laptop');
+      const laptopTop = document.querySelector('.laptop-top');
+      laptopTop.textContent = '    ______';
+      laptop.textContent = '彡彡/___/';
+    }, 1500);
+  }
+
+  nextColor() {
+    if (this.state.colorCounter < 0) {
+      this.state.colorCounter = this.props.colors.length - 1;
+    }
+
+    const color = this.props.colors[this.state.colorCounter];
+    this.state.colorCounter -= 1;
+
+    return color;
+  }
+
+  randomProjectile() {
+    const { projectiles } = this.props;
+    return projectiles[this.getRandomInt(projectiles.length)];
+  }
+
+  checkPhase() {
+    const { speed } = this.state;
+    const { speedPhases } = this.props;
+
+    if (speed < speedPhases[this.state.phase]) {
+      this.state.phase += 1;
+    }
+  }
+
+  getRandomInt(max) {
+    return Math.floor(Math.random() * Math.floor(max));
   }
 }
- function animateGuy() {
-  if (speed > limitA) {
-    guyEl.textContent = guyFramesA[guyCounter++];
-  } else if (speed < limitA && speed > limitB) {
-    guyEl.textContent = guyFramesB[guyCounter++];
-  } else if (speed < limitB && speed > limitC) {
-    guyEl.textContent = guyFramesC[guyCounter++];
-  } else if (speed < limitC) {
-    flipTable();
-  }
-   if (guyCounter >= guyFramesA.length) guyCounter = 0;
-   if (speedUp) {
-    clearInterval(guyAnimation);
-    guyAnimation = setInterval(animateGuy, speed);
-  }
+
+function createEmailAnchor(element, array) {
+  const email = array.join('');
+  element.href = 'mailto:' + email + '?subject=Reaching Out';
+  element.innerHTML = email;
 }
- function flipTable() {
-  clearInterval(sparklesAnimation);
-  clearInterval(guyAnimation);
-  setInterval(() => {
-    const remainingSparkles = [...sparklesEl.textContent];
-    remainingSparkles.pop();
-    remainingSparkles.unshift(' ');
-    sparklesEl.textContent = remainingSparkles.join('');
-  }, speed);
-  setTimeout(() => {
-    guyEl.textContent = '( ノO‿O)ノ';
-    sparklesEl.textContent = '';
-    const laptop = document.querySelector('.laptop');
-    const laptopTop = document.querySelector('.laptop-top');
-    laptopTop.textContent = '    ______';
-    laptop.textContent = '彡彡/___/';
-  }, 1500);
+
+const options = {
+  container: document.querySelector('.animation'),
+  sparklesElement: document.querySelector('.sparkles'),
+  kaomojiElement: document.querySelector('.guy'),
+  sparkles: '-.･ﾟ*｡-･ﾟ☆',
+  projectiles: ['☆','☃', '⚾︎', '✏︎', '✪', '✿', '✂', '☕'],
+  bugs: ['🐛', '🐛', '🐛', '🐛', '👾', '👻', '💀', '💩'],
+  kaomoji: [
+    ['( ⊃・ω・)੭', '( ੭・ω・)⊃'],
+    ['( ⊃ •̀ω•́)੭', '( ੭ •̀ω•́)⊃'],
+    ['( ⊃ ○Д○)੭', '( ੭ ○Д○)⊃'],
+  ],
+  speedPhases: [100, 40, 20],
+  speed: 300,
+  increment: .9,
+  colors: [
+    '#d50000',
+    '#C51162',
+    '#AA00FF',
+    '#6200EA',
+    '#304FFE',
+    '#2962FF',
+    '#0091EA',
+    '#00B8D4',
+    '#00BFA5',
+    '#00C853',
+    '#64DD17',
+    '#AEEA00',
+    '#FFD600',
+    '#FFAB00',
+    '#FF6D00',
+    '#DD2C00',
+  ],
 }
- function getRandomInt(max) {
-  return Math.floor(Math.random() * Math.floor(max));
-}
- // -----
- createEmailAnchor(['jefferson','w','lam','@','gmail','.','com'], 'email');
- function createEmailAnchor(array, anchorId) {
-  var email = array.join('');
-  var elAnchor = document.getElementById(anchorId);
-  elAnchor.href = 'mailto:' + email + '?subject=Reaching Out';
-  elAnchor.innerHTML = email;
-}
+
+const animation = new Animation(options);
+const email = document.querySelector('#email');
+createEmailAnchor(email, ['jefferson','w','lam','@','gmail','.','com']);
