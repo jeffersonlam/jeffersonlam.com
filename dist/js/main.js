@@ -191,7 +191,7 @@ const options = {
   ],
   speedPhases: [100, 40, 20],
   speed: 300,
-  increment: .9,
+  increment: .92,
   colors: [
     '#d50000',
     '#C51162',
