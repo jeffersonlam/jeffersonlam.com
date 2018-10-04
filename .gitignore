@@ -1,4 +1,4 @@
-/node_modules
-/dist/css
-/dist/*.html
+.gitignore
+node_modules/
+dist/
 package-lock.json

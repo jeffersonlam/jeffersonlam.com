@@ -1,2 +1,3 @@
 !dist/index.html
-!dist/css
+!dist/main.css
+!dist/main.js
