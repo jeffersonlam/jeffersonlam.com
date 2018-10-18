@@ -1,0 +1,86 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto+Mono:400,700');
+$color--accent: #607D8B;
+$color--offwhite: #fcfcfc;
+$color--offblack: #333;
+$font-stack: 'Roboto Mono', 'Courier New', Courier, monospace;
+$breakpoint--small: 800px;
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: $font-stack;
+  font-size: 1.5em;
+
+  height: 100%;
+
+  @media (max-width: $breakpoint--small) {
+    font-size: 1.25em;
+  }
+}
+
+body {
+  height: 100%;
+  margin: 0;
+
+  color: $color--offblack;
+  background-color: $color--offwhite;
+  background-image: url('img/background.svg');
+  background-position: center;
+  background-size: cover;
+}
+
+.container {
+  margin: 0 15%;
+  padding: 1rem 2rem;
+
+  border-radius: 2px;
+  background-color: $color--offwhite;
+  box-shadow: 0 0 2px rgba(0,0,0,.08);
+
+  h1:nth-child(1) {
+    margin: 0;
+  }
+
+  @media (max-width: $breakpoint--small) {
+    margin: 0 3vw;
+    padding: 1rem;
+  }
+}
+
+a {
+  font-weight: 300;
+  font-style: italic;
+
+  text-decoration: none;
+
+  color: $color--accent;
+
+  &:visited {
+    color: $color--accent;
+  }
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.guy {
+  display: inline-block;
+
+  width: 4.5rem;
+}
+
+.sparkles {
+  display: inline-block;
+
+  width: 5.5rem;
+  height: 1.5rem;
+
+  text-align: center;
+}
+
+ul {
+  list-style-type: square;
+}
