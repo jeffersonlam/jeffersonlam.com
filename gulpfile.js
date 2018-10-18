@@ -15,18 +15,19 @@ const uglify = require('gulp-uglify');
 const ghpages = require('gulp-gh-pages');
 
 task('styles', () => {
-  return src('./src/styles/**/*.scss')
+  return src('./src/scss/**/*.scss')
     .pipe(sass.sync().on('error', sass.logError))
     .pipe(autoprefixer({
       browsers: ['last 2 versions'],
       cascade: false
     }))
     .pipe(reload({stream:true}))
+    .pipe(rename('styles.css'))
     .pipe(dest('./dist'));
 });
 
 task('styles:build', () => {
-  return src('./src/styles/**/*.scss')
+  return src('./src/scss/**/*.scss')
     .pipe(sass.sync().on('error', sass.logError))
     .pipe(autoprefixer({
       browsers: ['last 2 versions'],
@@ -34,6 +35,16 @@ task('styles:build', () => {
     }))
     .pipe(csso())
     .pipe(rename('styles.css'))
+    .pipe(dest('./build'));
+});
+
+task('assets', () => {
+  return src('./src/assets/**/*')
+    .pipe(dest('./dist'));
+});
+
+task('assets:build', () => {
+  return src('./src/assets/**/*')
     .pipe(dest('./build'));
 });
 
@@ -50,7 +61,7 @@ task('html:build', () => {
 
 task('watch', () => {
   watch('./src/**/*.html', parallel('html', d => d()));
-  watch('./src/styles/**/*.scss', parallel('styles', d => d()));
+  watch('./src/scss/**/*.scss', parallel('styles', d => d()));
   watch('./src/js/**/*.js', parallel('js', d => d()));
 });
 
@@ -100,14 +111,15 @@ task('ghpages', function () {
 
 task('default',
   series(
-    parallel('html', 'styles', 'js'),
+    parallel('html', 'styles', 'js', 'assets'),
     parallel('bs', 'watch')
   )
 );
+
 task('build',
   series(
     'clean',
-    parallel('styles:build', 'html:build', 'js:build'),
+    parallel('styles:build', 'html:build', 'js:build', 'assets:build'),
     'bs:build'
   )
 );
