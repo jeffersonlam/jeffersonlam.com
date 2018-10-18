@@ -1,9 +1,10 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto+Mono:400,700');
-$color--accent: #607D8B;
+$color--accent: #607d8b;
 $color--offwhite: #fcfcfc;
 $color--offblack: #333;
 $font-stack: 'Roboto Mono', 'Courier New', Courier, monospace;
-$breakpoint--small: 800px;
+$breakpoint--large: 850px;
+$breakpoint--xlarge: 1250px;
 
 * {
   box-sizing: border-box;
@@ -11,12 +12,16 @@ $breakpoint--small: 800px;
 
 html {
   font-family: $font-stack;
-  font-size: 1.5em;
+  font-size: 1.1em;
 
   height: 100%;
 
-  @media (max-width: $breakpoint--small) {
+  @media (min-width: $breakpoint--large) {
     font-size: 1.25em;
+  }
+
+  @media (min-width: $breakpoint--xlarge) {
+    font-size: 1.5em;
   }
 }
 
@@ -32,8 +37,8 @@ body {
 }
 
 .container {
-  margin: 0 15%;
-  padding: 1rem 2rem;
+  margin: .2rem 3% 10%;
+  padding: 1rem;
 
   border-radius: 2px;
   background-color: $color--offwhite;
@@ -43,9 +48,14 @@ body {
     margin: 0;
   }
 
-  @media (max-width: $breakpoint--small) {
-    margin: 0 3vw;
-    padding: 1rem;
+  @media (min-width: $breakpoint--large) {
+    margin: .8rem auto 10%;
+    max-width: calc(#{$breakpoint--large} - 2em);
+    padding: 1rem 2rem;
+  }
+
+  @media (min-width: $breakpoint--xlarge) {
+    max-width: calc(#{$breakpoint--xlarge} - 2em);
   }
 }
 
