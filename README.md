@@ -4,6 +4,7 @@
 This is a static website that uses `gulp` to compile scss.
 Run `gulp` to watch for changes and compile into `dist/` folder.
 
+
 ## Deploy
 1. Install [git-ftp](https://github.com/git-ftp/git-ftp) and set up the url, username, and password
 1. Write some code and make a commit.
