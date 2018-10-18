@@ -37,8 +37,8 @@ body {
 }
 
 .container {
-  margin: .2rem 3% 10%;
-  padding: 1rem;
+  margin: .5rem 3% 3rem;
+  padding: 1rem 2rem;
 
   border-radius: 2px;
   background-color: $color--offwhite;
@@ -49,9 +49,8 @@ body {
   }
 
   @media (min-width: $breakpoint--large) {
-    margin: .8rem auto 10%;
+    margin: .5rem auto 3rem;
     max-width: calc(#{$breakpoint--large} - 2em);
-    padding: 1rem 2rem;
   }
 
   @media (min-width: $breakpoint--xlarge) {
