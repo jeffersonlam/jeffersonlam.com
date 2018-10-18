@@ -1,3 +1,4 @@
-!dist/index.html
-!dist/main.css
-!dist/main.js
+!build/index.html
+!build/styles.css
+!build/main.js
+!build/img/background.svg
