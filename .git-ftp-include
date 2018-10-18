@@ -1,1 +1,4 @@
-!build/
+!build/index.html
+!build/styles.css
+!build/main.js
+!build/img/background.svg
