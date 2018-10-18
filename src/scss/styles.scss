@@ -12,7 +12,7 @@ $breakpoint--xlarge: 1250px;
 
 html {
   font-family: $font-stack;
-  font-size: 1.1em;
+  font-size: 1.05em;
 
   height: 100%;
 
@@ -26,19 +26,22 @@ html {
 }
 
 body {
-  height: 100%;
-  margin: 0;
+  padding: .5rem .5rem 5rem;
 
   color: $color--offblack;
   background-color: $color--offwhite;
   background-image: url('img/background.svg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
   background-position: center;
   background-size: cover;
 }
 
 .container {
-  margin: .5rem 3% 3rem;
-  padding: 1rem 2rem;
+  box-sizing: border-box;
+  max-width: $breakpoint--large;
+  margin: 0 auto;
+  padding: 1rem 1.5rem;
 
   border-radius: 2px;
   background-color: $color--offwhite;
@@ -48,13 +51,8 @@ body {
     margin: 0;
   }
 
-  @media (min-width: $breakpoint--large) {
-    margin: .5rem auto 3rem;
-    max-width: calc(#{$breakpoint--large} - 2em);
-  }
-
   @media (min-width: $breakpoint--xlarge) {
-    max-width: calc(#{$breakpoint--xlarge} - 2em);
+    max-width: calc(#{$breakpoint--large} + 12vw);
   }
 }
 
