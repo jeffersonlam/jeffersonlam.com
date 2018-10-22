@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <title>Jefferson Lam</title>
   <meta charset="utf-8">
@@ -11,41 +12,112 @@
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-46392706-1"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
+    function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
     gtag('config', 'UA-46392706-1');
+
+    const trackOutboundLink = function (url) {
+      ga('send', 'event', 'outbound', 'click', url, {
+        'transport': 'beacon',
+        'hitCallback': function () { document.location = url; }
+      });
+    }
   </script>
 </head>
+
 <body>
 
-<div class="container">
-  <h1>Jefferson Lam</h1>
-  <h2>Front End Developer</h2>
-  <p>I build delightful user experiences for the web.</p>
-  <h4>Work</h4>
-  <ul>
-    <li><a href="http://jefferson.im/csvtojson/">CSV to JSON</a></li>
-    <li><a href="https://whole30.jefferson.im/">Whole30 Compliance Checker</a></li>
-    <li><a href="http://jefferson.im/skinnerbox">Skinnerbox</a></li>
-    <li><a href="http://streetspin.com/newgame">Streetspin</a></li>
-    <li>IBM Community Radio</li>
-    <li>IBM Bluemix</li>
-    <li>IBM Spectrum Scale</li>
-    <li><a href="http://jefferson.im/unitedredesign/">United Airlines App Mock Redesign</a></li>
-    <li><a href="/maps">Daytripper</a></li>
-  </ul>
-  <h4>Social</h4>
-  <ul>
-    <li><a href="https://www.linkedin.com/in/jeffersonlam/">LinkedIn</a></li>
-    <li><a href="https://github.com/jeffersonlam">Github</a></li>
-    <li><a href="https://codepen.io/jeffersonlam/">Codepen</a></li>
-    <li>Get in touch: <a id="email"></a></li>
-  </ul>
-  <pre>
+  <div class="container">
+    <h1>Jefferson Lam</h1>
+    <h2>Front End Developer</h2>
+    <p>I build delightful user experiences for the web.</p>
+    <h4>Work</h4>
+    <ul>
+      <li>
+        <a
+          href="http://jefferson.im/csvtojson/"
+          onclick="trackOutboundLink('http://jefferson.im/csvtojson/');"
+        >
+          CSV to JSON
+        </a>
+      </li>
+      <li>
+        <a
+          href="https://whole30.jefferson.im/"
+          onclick="trackOutboundLink('https://whole30.jefferson.im/');"
+        >
+          Is It Whole30?
+        </a>
+      </li>
+      <li>
+        <a
+          href="http://jefferson.im/skinnerbox"
+          onclick="trackOutboundLink('http://jefferson.im/skinnerbox');"
+        >
+          Skinnerbox
+        </a>
+      </li>
+      <li>
+        <a
+          href="http://streetspin.com/newgame"
+          onclick="trackOutboundLink('http://streetspin.com/newgame');"
+        >
+          Streetspin
+        </a>
+      </li>
+      <li>IBM Community Radio</li>
+      <li>IBM Bluemix</li>
+      <li>IBM Spectrum Scale</li>
+      <li>
+        <a
+          href="http://jefferson.im/unitedredesign/"
+          onclick="trackOutboundLink('http://jefferson.im/unitedredesign/');"
+        >
+          United Airlines App Mock Redesign
+        </a>
+      </li>
+      <li>
+        <a
+          href="/maps"
+          onclick="trackOutboundLink('/maps');"
+        >
+          Daytripper
+        </a>
+      </li>
+    </ul>
+    <h4>Social</h4>
+    <ul>
+      <li>
+        <a
+          href="https://www.linkedin.com/in/jeffersonlam/"
+          onclick="trackOutboundLink('https://www.linkedin.com/in/jeffersonlam/');"
+        >
+          LinkedIn
+        </a>
+      </li>
+      <li>
+        <a
+          href="https://github.com/jeffersonlam"
+          onclick="trackOutboundLink('https://github.com/jeffersonlam');"
+        >
+          Github
+        </a>
+      </li>
+      <li>
+        <a
+          href="https://codepen.io/jeffersonlam/"
+          onclick="trackOutboundLink('https://codepen.io/jeffersonlam/');"
+        >
+          Codepen
+        </a>
+      </li>
+      <li>Get in touch: <a onclick="trackOutboundLink('email');" id="email"></a></li>
+    </ul>
+    <pre>
                       <span class="laptop-top">  ____</span>
 <div class="animation"><span class="guy">( ⊃・ω・)っ</span><span class="sparkles">-.･ﾟ*｡-･ﾟ☆</span><span class="laptop">__/___/</span></div>
 </pre>
-</div>
-<script src="./main.js"></script>
+  </div>
+  <script src="./main.js"></script>
 </body>
 </html>
