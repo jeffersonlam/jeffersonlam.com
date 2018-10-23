@@ -21,7 +21,7 @@
         'event_category': 'outbound',
         'event_label': url,
         'transport_type': 'beacon',
-        'event_callback': function(){document.location = url;}
+        'event_callback': function(){window.open(url);}
       });
     }
   </script>
@@ -39,7 +39,7 @@
         <a
           href="/maps"
           target="_blank"
-          onclick="trackOutboundLink('/maps');"
+          onclick="trackOutboundLink('/maps'); return false;"
         >
           Daytripper
         </a>
@@ -48,7 +48,7 @@
         <a
           href="http://jefferson.im/unitedredesign/"
           target="_blank"
-          onclick="trackOutboundLink('http://jefferson.im/unitedredesign/');"
+          onclick="trackOutboundLink('http://jefferson.im/unitedredesign/'); return false;"
         >
           United Airlines App Mock Redesign
         </a>
@@ -57,7 +57,7 @@
           <a
             href="http://streetspin.com/newgame"
             target="_blank"
-            onclick="trackOutboundLink('http://streetspin.com/newgame');"
+            onclick="trackOutboundLink('http://streetspin.com/newgame'); return false;"
           >
             Streetspin
           </a>
@@ -66,7 +66,7 @@
         <a
           href="https://whole30.jefferson.im/"
           target="_blank"
-          onclick="trackOutboundLink('https://whole30.jefferson.im/');"
+          onclick="trackOutboundLink('https://whole30.jefferson.im/'); return false;"
         >
           Is It Whole30?
         </a>
@@ -75,7 +75,7 @@
         <a
           href="http://jefferson.im/skinnerbox"
           target="_blank"
-          onclick="trackOutboundLink('http://jefferson.im/skinnerbox');"
+          onclick="trackOutboundLink('http://jefferson.im/skinnerbox'); return false;"
         >
           Skinnerbox
         </a>
@@ -84,7 +84,7 @@
         <a
           href="http://jefferson.im/csvtojson/"
           target="_blank"
-          onclick="trackOutboundLink('http://jefferson.im/csvtojson/');"
+          onclick="trackOutboundLink('http://jefferson.im/csvtojson/'); return false;"
         >
           CSV to JSON
         </a>
@@ -99,7 +99,7 @@
         <a
           href="https://www.linkedin.com/in/jeffersonlam/"
           target="_blank"
-          onclick="trackOutboundLink('https://www.linkedin.com/in/jeffersonlam/');"
+          onclick="trackOutboundLink('https://www.linkedin.com/in/jeffersonlam/'); return false;"
         >
           LinkedIn
         </a>
@@ -108,7 +108,7 @@
         <a
           href="https://github.com/jeffersonlam"
           target="_blank"
-          onclick="trackOutboundLink('https://github.com/jeffersonlam');"
+          onclick="trackOutboundLink('https://github.com/jeffersonlam'); return false;"
         >
           Github
         </a>
@@ -117,7 +117,7 @@
         <a
           href="https://codepen.io/jeffersonlam/"
           target="_blank"
-          onclick="trackOutboundLink('https://codepen.io/jeffersonlam/');"
+          onclick="trackOutboundLink('https://codepen.io/jeffersonlam/'); return false;"
         >
           Codepen
         </a>
