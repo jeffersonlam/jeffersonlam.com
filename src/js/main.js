@@ -31,6 +31,9 @@ class Animation {
       return;
     } else {
       state.playing = true;
+
+      // google analytics
+      gtag('event', 'animationStart');
     }
 
     // create spans
