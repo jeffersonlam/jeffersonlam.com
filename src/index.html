@@ -17,9 +17,11 @@
     gtag('config', 'UA-46392706-1');
 
     const trackOutboundLink = function (url) {
-      ga('send', 'event', 'outbound', 'click', url, {
-        'transport': 'beacon',
-        'hitCallback': function () { document.location = url; }
+      gtag('event', 'click', {
+        'event_category': 'outbound',
+        'event_label': url,
+        'transport_type': 'beacon',
+        'event_callback': function(){document.location = url;}
       });
     }
   </script>
@@ -35,13 +37,31 @@
     <ul>
       <li>
         <a
-          href="http://jefferson.im/csvtojson/"
+          href="/maps"
           target="_blank"
-          onclick="trackOutboundLink('http://jefferson.im/csvtojson/');"
+          onclick="trackOutboundLink('/maps');"
         >
-          CSV to JSON
+          Daytripper
         </a>
       </li>
+      <li>
+        <a
+          href="http://jefferson.im/unitedredesign/"
+          target="_blank"
+          onclick="trackOutboundLink('http://jefferson.im/unitedredesign/');"
+        >
+          United Airlines App Mock Redesign
+        </a>
+      </li>
+      <li>
+          <a
+            href="http://streetspin.com/newgame"
+            target="_blank"
+            onclick="trackOutboundLink('http://streetspin.com/newgame');"
+          >
+            Streetspin
+          </a>
+        </li>
       <li>
         <a
           href="https://whole30.jefferson.im/"
@@ -62,34 +82,16 @@
       </li>
       <li>
         <a
-          href="http://streetspin.com/newgame"
+          href="http://jefferson.im/csvtojson/"
           target="_blank"
-          onclick="trackOutboundLink('http://streetspin.com/newgame');"
+          onclick="trackOutboundLink('http://jefferson.im/csvtojson/');"
         >
-          Streetspin
+          CSV to JSON
         </a>
       </li>
       <li>IBM Community Radio</li>
       <li>IBM Bluemix</li>
       <li>IBM Spectrum Scale</li>
-      <li>
-        <a
-          href="http://jefferson.im/unitedredesign/"
-          target="_blank"
-          onclick="trackOutboundLink('http://jefferson.im/unitedredesign/');"
-        >
-          United Airlines App Mock Redesign
-        </a>
-      </li>
-      <li>
-        <a
-          href="/maps"
-          target="_blank"
-          onclick="trackOutboundLink('/maps');"
-        >
-          Daytripper
-        </a>
-      </li>
     </ul>
     <h4>Social</h4>
     <ul>
