@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto+Mono:400,700');
-$color--accent: #607d8b;
+$color--accent: #1976D2;
 $color--offwhite: #fcfcfc;
 $color--offblack: #333;
 $font-stack: 'Roboto Mono', 'Courier New', Courier, monospace;
@@ -35,6 +35,8 @@ body {
   background-attachment: fixed;
   background-position: center;
   background-size: cover;
+
+  line-height: 1.5;
 }
 
 .container {
@@ -56,20 +58,48 @@ body {
   }
 }
 
+li {
+  padding: 1px 0;
+}
+
 a {
   font-weight: 300;
   font-style: italic;
 
   text-decoration: none;
+  box-shadow: inset 0 -1px $color--accent;
 
   color: $color--accent;
+  position: relative;
+  display: inline-block;
+  z-index: 1;
+  transition: all .2s -.05s;
+  padding: 0 .1rem;
 
   &:visited {
     color: $color--accent;
   }
 
+  &:before {
+    content: '';
+    transform: translatex(0) skew(-10deg);
+    background-color: $color--accent;
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 0;
+    bottom: 0;
+    z-index: -1;
+    transition: all .2s -.05s;
+  }
+
   &:hover {
-    text-decoration: underline;
+    color: $color--offwhite;
+
+    &:before {
+    transform: translatex(.1rem) skew(-10deg);
+    height: 100%;
+    }
   }
 }
 
