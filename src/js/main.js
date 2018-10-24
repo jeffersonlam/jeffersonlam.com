@@ -217,6 +217,6 @@ const options = {
   ],
 }
 
-const animation = new Animation(options);
+// const animation = new Animation(options);
 const email = document.querySelector('#email');
 createEmailAnchor(email, ['jefferson','w','lam','@','gmail','.','com']);
