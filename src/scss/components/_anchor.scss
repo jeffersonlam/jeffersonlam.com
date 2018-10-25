@@ -9,7 +9,7 @@
   color: $color--secondary;
   position: relative;
   display: inline-block;
-  transition: all 0.3s -0.1s;
+  transition: background-size 0.3s -0.1s;
   z-index: 0;
 
   &:visited {
