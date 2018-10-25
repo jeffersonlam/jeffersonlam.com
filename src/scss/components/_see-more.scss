@@ -1,0 +1,67 @@
+.see-more {
+  &__text {
+    margin: 0.5rem 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    line-height: 1.5rem;
+    max-height: 3rem;
+  }
+
+  &__label {
+    position: relative;
+    display: block;
+    text-align: right;
+    color: $color--accent;
+    font-size: 0.8rem;
+    margin-right: 2rem;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    &:before,
+    &:after {
+      position: absolute;
+      right: 0;
+      top: 0;
+      transform: translatex(100%);
+      font-size: 0.8rem;
+    }
+
+    &:before {
+      content: 'more';
+    }
+
+    &:after {
+      content: 'less';
+      display: none;
+    }
+  }
+
+  &__checkbox {
+    visibility: hidden;
+    display: none;
+    position: absolute;
+    z-index: -9999;
+    bottom: 0;
+    left: 0;
+
+    &:checked {
+      ~ .see-more__text {
+        max-height: 100%;
+        white-space: normal;
+      }
+
+      ~ .see-more__label {
+        &:before {
+          display: none;
+        }
+
+        &:after {
+          display: block;
+        }
+      }
+    }
+  }
+}

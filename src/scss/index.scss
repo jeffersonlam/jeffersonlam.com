@@ -1,37 +1,8 @@
 @import 'typography';
 @import 'globals';
+@import 'base';
 
-* {
-  box-sizing: border-box;
-}
-
-html {
-  @media (min-width: $breakpoint--large) {
-    font-size: 1.2em;
-  }
-
-  @media (min-width: $breakpoint--xlarge) {
-    font-size: 1.4em;
-  }
-}
-
-body {
-  margin: 0;
-
-  color: $color--offblack;
-  background-color: $color--offwhite;
-  background-image: url('img/background.svg');
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-position: center;
-  background-size: cover;
-
-  line-height: 1.5;
-
-  @media (min-width: $breakpoint--xlarge) {
-    margin: 1rem;
-  }
-}
+@import './components/see-more';
 
 .container {
   box-sizing: border-box;
@@ -96,72 +67,6 @@ body {
 
     &:last-child {
       padding-bottom: 0;
-    }
-
-    label {
-      position: relative;
-      display: block;
-      text-align: right;
-      color: $color--accent;
-      font-size: 0.8rem;
-      margin-right: 2rem;
-
-      &:hover {
-        cursor: pointer;
-      }
-
-      &:before,
-      &:after {
-        position: absolute;
-        right: 0;
-        top: 0;
-        transform: translatex(100%);
-        font-size: 0.8rem;
-      }
-
-      &:before {
-        content: 'more';
-      }
-
-      &:after {
-        content: 'less';
-        display: none;
-      }
-    }
-
-    .readmore-checkbox {
-      visibility: hidden;
-      display: none;
-      position: absolute;
-      z-index: -9999;
-      bottom: 0;
-      left: 0;
-
-      &:checked {
-        ~ p {
-          max-height: 100%;
-          white-space: normal;
-        }
-
-        ~ .actions label {
-          &:before {
-            display: none;
-          }
-
-          &:after {
-            display: block;
-          }
-        }
-      }
-    }
-
-    p {
-      margin: 0.5rem 0;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-      line-height: 1.5rem;
-      max-height: 3rem;
     }
   }
 }

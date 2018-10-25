@@ -1,0 +1,33 @@
+@import 'globals';
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  @media (min-width: $breakpoint--large) {
+    font-size: 1.2em;
+  }
+
+  @media (min-width: $breakpoint--xlarge) {
+    font-size: 1.4em;
+  }
+}
+
+body {
+  margin: 0;
+
+  color: $color--offblack;
+  background-color: $color--offwhite;
+  background-image: url('img/background.svg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+
+  line-height: 1.5;
+
+  @media (min-width: $breakpoint--xlarge) {
+    margin: 1rem;
+  }
+}
