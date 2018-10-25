@@ -5,7 +5,6 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     line-height: 1.5rem;
-    max-height: 3rem;
   }
 
   &__label {
@@ -49,11 +48,11 @@
 
     &:checked {
       ~ .see-more__text {
-        max-height: 100%;
         white-space: normal;
       }
 
-      ~ .see-more__label {
+      ~ .actions .see-more__label {
+
         &:before {
           display: none;
         }
