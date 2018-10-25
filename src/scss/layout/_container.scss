@@ -1,0 +1,13 @@
+.container {
+  box-sizing: border-box;
+  max-width: $breakpoint--large;
+  margin: 0 auto;
+
+  border-radius: 2px;
+  background-color: $color--offwhite;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.08);
+
+  @media (min-width: $breakpoint--xlarge) {
+    max-width: calc(#{$breakpoint--large} + 20vw);
+  }
+}
