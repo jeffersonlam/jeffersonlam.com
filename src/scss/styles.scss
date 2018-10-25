@@ -16,7 +16,7 @@ html {
 }
 
 body {
-  margin: 1rem;
+  margin: 0;
 
   color: $color--offblack;
   background-color: $color--offwhite;
@@ -27,6 +27,10 @@ body {
   background-size: cover;
 
   line-height: 1.5;
+
+  @media (min-width: $breakpoint--xlarge) {
+    margin: 1rem;
+  }
 }
 
 .container {
@@ -44,7 +48,7 @@ body {
 }
 
 .content {
-  padding: 0 1rem;
+  padding: 0 1.5rem;
 
   @media (min-width: $breakpoint--large) {
     padding: 0 2rem;
@@ -57,14 +61,19 @@ body {
 }
 
 .hero {
-  padding-top: 3rem;
-  padding-bottom: 3rem;
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
   background-color: $color--accent;
-  // color: $color--offwhite;
-  background: linear-gradient(153deg, rgba(179,239,245,.75) 50%, rgba(212,242,209,.75) 100%);
+  background: linear-gradient(
+    153deg,
+    rgba(179, 239, 245, 0.75) 50%,
+    rgba(212, 242, 209, 0.75) 100%
+  );
 
-
-
+  @media (min-width: $breakpoint--large) {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
 
   h1 {
     margin-top: 0;
@@ -74,8 +83,8 @@ body {
 }
 
 .main {
-  padding-top: 1rem;
-  padding-bottom: 1rem;
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
 
   @media (min-width: $breakpoint--large) {
     padding-top: 2rem;
@@ -94,7 +103,7 @@ body {
       display: block;
       text-align: right;
       color: $color--accent;
-      font-size: .8rem;
+      font-size: 0.8rem;
       margin-right: 2rem;
 
       &:hover {
@@ -107,7 +116,7 @@ body {
         right: 0;
         top: 0;
         transform: translatex(100%);
-        font-size: .8rem;
+        font-size: 0.8rem;
       }
 
       &:before {
@@ -195,7 +204,7 @@ footer {
   li {
     display: flex;
     align-items: center;
-    padding: .25rem 0;
+    padding: 0.25rem 0;
   }
 
   .icon {
@@ -203,7 +212,7 @@ footer {
     align-items: center;
     justify-content: center;
     flex: 0 0 2rem;
-    margin-right: .5rem;
+    margin-right: 0.5rem;
   }
 
   i {
@@ -249,33 +258,8 @@ a {
   }
 }
 
-.guy {
-  display: inline-block;
-
-  width: 4.5rem;
-}
-
-.sparkles {
-  display: inline-block;
-
-  width: 5.5rem;
-  height: 1.5rem;
-
-  text-align: center;
-}
-
 ul {
   list-style-type: square;
   margin: 0;
   padding-left: 25px;
-}
-
-@keyframes fade-in {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
 }
