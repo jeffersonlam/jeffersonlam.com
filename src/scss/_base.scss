@@ -1,28 +1,13 @@
 @import 'globals';
-@import url('https://fonts.googleapis.com/css?family=Montserrat:500,800|Open+Sans');
+@import url('https://fonts.googleapis.com/css?family=Montserrat:800|Open+Sans:400,600');
 
-$heading-font-stack: 'Montserrat', 'Courier New', Courier, monospace;
-$display-font-stack: 'Open Sans', Helvetica, sans-serif;
-
-h1, h2, h3, h4, h5, h6 {
-  font-family: $heading-font-stack
-}
-
-.subheading {
-  font-family: $heading-font-stack;
-  font-weight: 500;
-}
-
-body {
-  font-family: $display-font-stack;
-}
-
-
-* {
-  box-sizing: border-box;
-}
+$heading-font-stack: 'Montserrat', 'montserrat', 'Source Sans', 'Helvetica Neue',
+  Helvetica, 'Arial Black', Arial, sans-serif;
+$display-font-stack: 'Open Sans', 'Segoe UI', Tahoma, sans-serif;
 
 html {
+  box-sizing: border-box;
+
   @media (min-width: $breakpoint--large) {
     font-size: 1.2em;
   }
@@ -32,10 +17,17 @@ html {
   }
 }
 
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
 body {
   margin: 0;
 
   color: $color--offblack;
+  font-family: $display-font-stack;
   background-color: $color--offwhite;
   background-image: url('img/background.svg');
   background-repeat: no-repeat;
@@ -49,3 +41,13 @@ body {
     margin: 1rem;
   }
 }
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: $heading-font-stack;
+}
+
