@@ -1,11 +1,9 @@
 @import 'globals';
 @import 'base';
 
+@import './layout/section';
 @import './layout/container';
-@import './layout/content';
-@import './layout/hero';
-@import './layout/main';
-@import './layout/footer';
+@import './layout/helpers';
 
 @import './components/anchor';
 @import './components/subheading';
