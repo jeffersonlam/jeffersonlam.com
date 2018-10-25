@@ -139,6 +139,7 @@ a {
   }
 
   &:hover {
+    cursor: pointer;
     color: $color--offwhite;
 
     &:before {
