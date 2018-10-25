@@ -175,6 +175,28 @@ footer {
       }
     }
   }
+
+  ul {
+    padding: 0;
+  }
+
+  li {
+    display: flex;
+    align-items: center;
+    padding: .25rem 0;
+  }
+
+  .icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 2rem;
+    margin-right: .5rem;
+  }
+
+  i {
+    font-size: 1.7rem !important;
+  }
 }
 
 a {

@@ -8,6 +8,8 @@
   <meta name="author" content="Jefferson Lam">
   <meta name="viewport" content="width=device-width">
   <link rel="stylesheet" href="./styles.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-46392706-1"></script>
   <script>
@@ -42,7 +44,7 @@
               <strong>Daytripper</strong>
             </a>
             <input id="1" type="checkbox" class="readmore-checkbox">
-            <p>Playing with Google streetview, I thought to myself, "I wish there was an easier way to see the streetviews down a route." Soon enough, I made an app where you could scroll through Google streetview. After posting it on <a onclick="trackOutboundLink('https://old.reddit.com/r/webdev/comments/1yia5s/my_first_webapp_ever_presenting_you_google_maps/'); return false;">reddit</a>, it quickly reached 10k unique visitors and 50k API calls in its first week. This was my first app, built during my time at <a onclick="trackOutboundLink('https://www.codingdojo.com/');">Coding Dojo</a> with plain HTML, CSS, JS, and jQuery. 2014.</p>
+            <p>Playing with Google maps streetview, I thought to myself, "I wish there was an easier way to see all the streetviews on a route." Soon enough, I made an app where you could scroll through Google streetview. After posting it on <a onclick="trackOutboundLink('https://old.reddit.com/r/webdev/comments/1yia5s/my_first_webapp_ever_presenting_you_google_maps/'); return false;">reddit</a>, it quickly reached 10k unique visitors and 50k API calls in its first week. This was my first app, built during my time at <a onclick="trackOutboundLink('https://www.codingdojo.com/');">Coding Dojo</a> with plain HTML, CSS, JS, and jQuery. 2014.</p>
             <div class="actions" onclick="gtag('event', 'read');"><label for="1">see&nbsp;</label></div>
           </li>
           <li>
@@ -50,7 +52,7 @@
               <strong>United Airlines Redesign</strong>
             </a>
             <input id="2" type="checkbox" class="readmore-checkbox">
-            <p>I took on the challenge of creating a mock redesign of United Airline's mobile app. This is a clickable coded prototype of a design concept. 2014.</p>
+            <p>I created a mock redesign of United Airline's mobile app. This is a clickable coded prototype of a design concept. 2014.</p>
             <div class="actions" onclick="gtag('event', 'read');"><label for="2">see&nbsp;</label></div>
           </li>
           <li>
@@ -58,7 +60,7 @@
               <strong>Streetspin</strong>
             </a>
             <input id="3" type="checkbox" class="readmore-checkbox">
-            <p>As part of a 3-person team, we created a game to make learning geography a fun social experience, especially for K-12 education. This was a unique challenge, for we had multiple users to design for – students and teachers – as well as multiple experiences to consider – game design, the in-game experience, and the "out-game" experience. <a onclick="trackOutboundLink('https://www.facebook.com/pg/StreetSpinGame/videos/?ref=page_internal');">See it played</a>. 2016 to 2017.</p>
+            <p>As a 3-person team, we created a game to make learning geography a fun social experience, especially for K-12 education. This was a unique challenge, for we had very different users to design for – students and teachers – as well as multiple experiences to consider – game design, the in-game experience, and the "out-game" experience. <a onclick="trackOutboundLink('https://www.facebook.com/pg/StreetSpinGame/videos/?ref=page_internal');">See it played</a>. 2016 to 2017.</p>
             <div class="actions" onclick="gtag('event', 'read');"><label for="3">see&nbsp;</label></div>
             </li>
           <li>
@@ -66,7 +68,7 @@
               <strong>Is It Whole30?</strong>
             </a>
             <input id="4" type="checkbox" class="readmore-checkbox">
-            <p>While doing my first Whole30, I often found myself googling additives in grocery store aisles. Frustrated by this tedious and repetitive task, I compiled all the info I could find into a CSV file, converted it into a JSON object (I built a <a onclick="trackOutboundLink('http://jefferson.im/csvtojson/');">separate tool for that</a>), and wrapped it with a UI built in React to make it immediately searchable. 2018.</p>
+            <p>On my first Whole30, I often spent lots of time googling additives in grocery store aisles. Frustrated by this tedious and repetitive task, I compiled all the info I could find into a CSV file, converted it into a JSON object (I built a <a onclick="trackOutboundLink('http://jefferson.im/csvtojson/');">separate tool for that</a>), and wrapped it with a UI built in React to make it immediately searchable. 2018.</p>
             <div class="actions" onclick="gtag('event', 'read');"><label for="4">see&nbsp;</label></div>
           </li>
           <li>
@@ -92,28 +94,32 @@
     </div>
     <footer>
       <div class="content">
-      <ul>
-        <li>
-          <a onclick="trackOutboundLink('https://www.linkedin.com/in/jeffersonlam/');">
-            LinkedIn
-          </a>
-        </li>
-        <li>
-          <a onclick="trackOutboundLink('https://github.com/jeffersonlam');">
-            Github
-          </a>
-        </li>
-        <li>
-          <a onclick="trackOutboundLink('https://codepen.io/jeffersonlam/');" >
-            Codepen
-          </a>
-        </li>
-        <li>Get in touch: <a id="email"></a></li>
-      </ul>
-      <!-- <pre>
-                      <span class="laptop-top">  ____</span>
-<div class="animation"><span class="guy">( ⊃・ω・)っ</span><span class="sparkles">-.･ﾟ*｡-･ﾟ☆</span><span class="laptop">__/___/</span></div>
-</pre> -->
+        <ul>
+          <li>
+            <div class="icon">
+              <i class="fab fa-linkedin fa-lg"></i>
+            </div>
+            <a onclick="trackOutboundLink('https://www.linkedin.com/in/jeffersonlam/');">LinkedIn</a>
+          </li>
+          <li>
+            <div class="icon">
+              <i class="fab fa-github fa-lg"></i>
+            </div>
+            <a onclick="trackOutboundLink('https://github.com/jeffersonlam');">Github</a>
+          </li>
+          <li>
+            <div class="icon">
+              <i class="fab fa-codepen fa-lg"></i>
+            </div>
+            <a onclick="trackOutboundLink('https://codepen.io/jeffersonlam/');">Codepen</a>
+          </li>
+          <li>
+            <div class="icon">
+              <i class="fas fa-envelope-square fa-lg"></i>
+            </div>
+            <a id="email"></a></div>
+          </li>
+        </ul>
       </div>
     </footer>
   </div>
