@@ -52,16 +52,25 @@ h1 {
 }
 
 .content {
-  padding: 0 2rem;
+  padding: 0 1rem;
+
+  @media (min-width: $breakpoint--large) {
+    padding: 0 2rem;
+  }
 }
 
 .main {
-  padding-top: 2rem;
-  padding-bottom: 2rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
 
+  @media (min-width: $breakpoint--large) {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
 
   li {
-    padding: 0 0 2rem;
+    padding: 0 0 1rem;
+
 
     &:last-child {
       padding-bottom: 0;
