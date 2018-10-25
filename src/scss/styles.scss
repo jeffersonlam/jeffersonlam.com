@@ -60,6 +60,11 @@ h1 {
   }
 }
 
+.actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
 .main {
   padding-top: 1rem;
   padding-bottom: 1rem;
@@ -72,13 +77,74 @@ h1 {
   li {
     padding: 0 0 1rem;
 
-
     &:last-child {
       padding-bottom: 0;
     }
 
+    label {
+      position: relative;
+      display: block;
+      text-align: right;
+      color: $color--accent;
+      font-size: .8rem;
+      margin-right: 2rem;
+
+      &:hover {
+        cursor: pointer;
+      }
+
+      &:before,
+      &:after {
+        position: absolute;
+        right: 0;
+        top: 0;
+        transform: translatex(100%);
+        font-size: .8rem;
+      }
+
+      &:before {
+        content: 'more';
+      }
+
+      &:after {
+        content: 'less';
+        display: none;
+      }
+    }
+
+    .readmore-checkbox {
+      visibility: hidden;
+      display: none;
+      position: absolute;
+      z-index: -9999;
+      bottom: 0;
+      left: 0;
+
+      &:checked {
+        ~ p {
+          max-height: 100%;
+          white-space: normal;
+        }
+
+        ~ .actions label {
+          &:before {
+            display: none;
+          }
+
+          &:after {
+            display: block;
+          }
+        }
+      }
+    }
+
     p {
       margin: 0.5rem 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      line-height: 1.5rem;
+      max-height: 3rem;
     }
   }
 }
