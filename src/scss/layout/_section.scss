@@ -28,6 +28,8 @@
   }
 
   &--main {
+    background-color: $color--offwhite;
+    background-image: url('img/funky-lines.png');
     li {
       padding: 0 0 1rem;
     }
