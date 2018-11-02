@@ -63,6 +63,7 @@ task('watch', () => {
   watch('./src/**/*.html', parallel('html', d => d()));
   watch('./src/scss/**/*.scss', parallel('styles', d => d()));
   watch('./src/js/**/*.js', parallel('js', d => d()));
+  watch('./src/assets/**/*', parallel('assets', d => d()));
 });
 
 task('js', () => {
