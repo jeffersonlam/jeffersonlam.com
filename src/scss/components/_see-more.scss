@@ -1,5 +1,5 @@
 .see-more {
-  &__text {
+  &__content {
     margin: 0.5rem 0;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -47,7 +47,7 @@
     left: 0;
 
     &:checked {
-      ~ .see-more__text {
+      ~ .see-more__content {
         white-space: normal;
       }
 
