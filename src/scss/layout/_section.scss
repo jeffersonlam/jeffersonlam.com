@@ -1,10 +1,12 @@
+@import '../globals';
+
 .section {
 
   &__content {
-    padding: 2.5rem 1.5rem 2rem 1.5rem;
+    padding: $section-padding--small;
 
     @media (min-width: $breakpoint--large) {
-      padding: 2.5rem 2rem 2rem;
+      padding: $section-padding--large;
     }
   }
 
@@ -30,6 +32,11 @@
   &--main {
     background-color: $color--offwhite;
     background-image: url('img/funky-lines.png');
+
+    @media (max-width: $breakpoint--large) {
+      padding: 0;
+    }
+
     li {
       padding: 0 0 1rem;
     }

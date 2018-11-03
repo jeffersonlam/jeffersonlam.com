@@ -1,6 +1,6 @@
 .container {
   box-sizing: border-box;
-  max-width: $breakpoint--large;
+  max-width: $breakpoint--xlarge;
   margin: 0 auto;
 
   border-radius: 2px;
@@ -9,7 +9,7 @@
   animation: fadeIn .8s forwards;
 
   @media (min-width: $breakpoint--xlarge) {
-    max-width: calc(#{$breakpoint--large} + 20vw);
+    max-width: calc(#{$breakpoint--xlarge} + 20vw);
   }
 }
 

@@ -9,11 +9,11 @@ html {
   box-sizing: border-box;
 
   @media (min-width: $breakpoint--large) {
-    font-size: 1.2em;
+    font-size: 1.125em;
   }
 
   @media (min-width: $breakpoint--xlarge) {
-    font-size: 1.4em;
+    font-size: 1.25em;
   }
 }
 
@@ -51,3 +51,8 @@ h6 {
   font-family: $heading-font-stack;
 }
 
+p {
+  margin: 1.5rem 0;
+  line-height: 1.58;
+  letter-spacing: -.004rem;
+}

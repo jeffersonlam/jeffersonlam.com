@@ -1,0 +1,38 @@
+.image {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  &--daytripper {
+    background-image: url('img/daytripper.jpg');
+  }
+
+  &--united-screens {
+    background-image: url('img/united-screens.jpg');
+    background-size: 62.5%;
+  }
+
+  &--streetspin-screens {
+    background-image: url('img/streetspin-screens.jpg');
+    background-size: 100%;
+  }
+
+  &--whole30-screens {
+    background-image: url('img/whole30-screens.jpg');
+    background-size: 62.5%;
+  }
+
+  &--radio {
+    background-image: url('img/ibm-radio.jpg');
+  }
+
+  &--ibm-bluemix {
+    background-image: url('img/ibm-bluemix.png');
+    background-size: 100%;
+  }
+
+  &--ibm-elastic-storage {
+    background-image: url('img/ibm-elastic-storage.jpg');
+    background-size: 100%;
+  }
+}

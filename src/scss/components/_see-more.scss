@@ -1,10 +1,6 @@
 .see-more {
   &__content {
-    margin: 0.5rem 0;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    line-height: 1.5rem;
+    display: none;
   }
 
   &__label {
@@ -46,17 +42,17 @@
     left: -100%;
 
     &:focus {
-      ~ .actions .see-more__label {
+      ~ .item__see-more .see-more__label {
         outline: auto 5px -webkit-focus-ring-color;
       }
     }
 
     &:checked {
       ~ .see-more__content {
-        white-space: normal;
+        display: block;
       }
 
-      ~ .actions .see-more__label {
+      ~ .item__see-more .see-more__label {
 
         &:before {
           display: none;

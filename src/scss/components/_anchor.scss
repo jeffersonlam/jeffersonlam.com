@@ -21,6 +21,10 @@
     color: $color--offwhite;
     background-size: 100% 100%;
   }
+
+  &--item {
+    text-decoration: none;
+  }
 }
 
 .anchor--invert {
