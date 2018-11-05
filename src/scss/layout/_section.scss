@@ -12,6 +12,14 @@
 
   &__heading {
     margin-top: 0;
+
+    &--padding {
+      padding: 2rem 1rem 1rem;
+
+      @media (min-width: $breakpoint--large) {
+        padding: 2rem;
+      }
+    }
   }
 
   &--hero {
@@ -30,8 +38,9 @@
   }
 
   &--main {
-    background-color: $color--offwhite;
-    background-image: url('img/funky-lines.png');
+    background-color: $color--white;
+    background-image: url('img/ricepaper.png');
+    background-size: 400px 400px;
 
     @media (max-width: $breakpoint--large) {
       padding: 0;

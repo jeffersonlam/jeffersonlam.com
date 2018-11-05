@@ -1,10 +1,16 @@
 @import '../globals';
 
 .item {
-  margin: 2.5rem 0;
+  padding: 0 0 3rem;
+
+  &:nth-child(odd) {
+    background-color: rgba($color--offwhite-2, 1);
+    background-image: url('img/ricepaper.png');
+    background-size: 400px 400px;
+  }
 
   @media (min-width: $breakpoint--large) {
-    overflow: auto;
+    padding: 2rem;
   }
 }
 
@@ -22,15 +28,17 @@
 }
 
 .item__info {
-  @media (max-width: $breakpoint--large) {
-    padding: 1rem 0 0;
+  padding: 0 .5rem;
+
+  @media (min-width: $breakpoint--large) {
+    padding: 0;
   }
 }
 
 .item__title {
   font-size: 1.5rem;
   font-weight: 700;
-  margin-bottom: .5rem;
+  margin-bottom: 0.5rem;
 }
 
 .item__subtitle {
@@ -39,26 +47,29 @@
 
 .item__content {
   max-width: 740px;
-  margin: 3rem auto 0;
+  padding: 0 .5rem;
 
-  p:first-of-type {
-    &:first-letter {
-      float: left;
-      font-size: 2.8em;
-      margin-right: 10px;
-      line-height: 1;
-    }
+  @media (min-width: $breakpoint--large) {
+    padding: 0;
+    margin: 2rem auto 0;
   }
 }
 
-.item__see-more {
+.item__actions {
   display: flex;
-  margin-top: .5rem;
+  margin-top: 1rem;
+  padding: 0 .5rem;
+
+  @media (min-width: $breakpoint--large) {
+    justify-content: center;
+    padding: 0;
+  }
 }
 
 .item__image {
+
   @media (max-width: $breakpoint--large) {
-    margin: 0 -1rem;
+    // margin: 0 -1rem;
     height: 50vw;
   }
 
@@ -73,4 +84,14 @@
       clear: both;
     }
   }
+}
+
+.item__content-divider {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 90px;
+  margin: 1.5rem auto;
+  color: $color--light-gray;
+  font-size: .5rem;
 }
